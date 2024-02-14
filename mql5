@@ -1,0 +1,102 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                            Breakout Scanner.mq5 |
+//|              Copyright 2021, Forex Robot Easy Team                 |
+//|                              forexroboteasy.com                    |
+//+------------------------------------------------------------------+
+#property copyright 'Copyright 2021, Forex Robot Easy Team'
+#property link      'forexroboteasy.com'
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+input int LookbackPeriod = 20; // Lookback period for detecting breakouts
+input double EngulfingThreshold = 0.7; // Threshold for engulfing pattern detection
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Get current symbol and timeframe
+   string symbol = Symbol();
+   ENUM_TIMEFRAMES timeframe = Period();
+   
+   // Analyze potential breakouts for the current symbol and timeframe
+   double resistanceLevel = GetResistanceLevel(symbol, timeframe);
+   double supportLevel = GetSupportLevel(symbol, timeframe);
+   
+   // Check for upward breakouts
+   if(BreaksResistanceLevel(symbol, timeframe, resistanceLevel))
+   {
+      // Buy at breakout
+      Buy(symbol);
+   }
+   
+   // Check for downward breakouts
+   if(BreaksSupportLevel(symbol, timeframe, supportLevel))
+   {
+      // Sell at breakout
+      Sell(symbol);
+   }
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+double GetResistanceLevel(string symbol, ENUM_TIMEFRAMES timeframe)
+{
+   // Implement algorithm to identify resistance level
+   // ...
+   return 1.0; // Placeholder value
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+double GetSupportLevel(string symbol, ENUM_TIMEFRAMES timeframe)
+{
+   // Implement algorithm to identify support level
+   // ...
+   return 0.9; // Placeholder value
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+bool BreaksResistanceLevel(string symbol, ENUM_TIMEFRAMES timeframe, double resistanceLevel)
+{
+   // Implement algorithm to detect upward breakout
+   // ...
+   return true; // Placeholder value
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+bool BreaksSupportLevel(string symbol, ENUM_TIMEFRAMES timeframe, double supportLevel)
+{
+   // Implement algorithm to detect downward breakout
+   // ...
+   return true; // Placeholder value
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+void Buy(string symbol)
+{
+   // Implement code to execute buy order at breakout
+   // ...
+   Print('Buy order executed for symbol: ', symbol);
+}
+
+//+------------------------------------------------------------------+
+//|                                                                  |
+//+------------------------------------------------------------------+
+void Sell(string symbol)
+{
+   // Implement code to execute sell order at breakout
+   // ...
+   Print('Sell order executed for symbol: ', symbol);
+}
